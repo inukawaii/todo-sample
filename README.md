@@ -1,9 +1,9 @@
 # todo-sample
 
 ## 目的
-- vue-cliでアプリケーションを作ってみる
-- vuex,vue-routerは使わない
-- コンポーネントだけ使う
+- 初心者がvue-cliでアプリケーションを作ってみる経験をするため
+  - vuex,vue-routerは使わない
+- 単一ファイルコンポーネントを理解する 
 
 ## Project setup
 ```
