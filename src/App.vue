@@ -2,11 +2,11 @@
   <div id="app">
     <h1>TODOリスト</h1>
     <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="display_none" v-model="display_none">
-        <label for="display_none">完了したTODOは非表示にする</label>
+      <input type="checkbox" class="form-check-input" id="display_none" v-model="display_none">
+      <label for="display_none">完了したTODOは非表示にする</label>
     </div>
-    
-    <ul>
+
+    <ul class="list-group w-80">
       <Todo
         v-for="(todo, index) in todos"
         v-bind:key="index"
@@ -14,16 +14,35 @@
         v-bind:members="members"
         v-bind:display_none="display_none"
       />
-      <li>
-        <input type="textarea" v-model="new_todo" placeholder="TODOを入力してください">
-        <select v-model="rep" size="1">
-          <option value='' disabled selected>担当者を選択</option>
-          <option v-for="member in members" v-bind:value="member" v-bind:key="member">
-            {{member}}
-          </option>
-        </select>
-        <input type="date" v-model="new_date">
-        <button v-on:click="add">追加</button>
+      <li class="list-group-item container">
+        <div class="">
+          <div class="row">
+            <div class="col-4">
+              <input 
+              type="textarea" class="form-control"
+               v-model="new_todo" placeholder="TODOを入力してください">
+            </div>
+            <div class="col-3">
+              <select v-model="rep" size="1" class="custom-select">
+                <option value disabled selected>担当者を選択</option>
+                <option
+                  v-for="member in members"
+                  v-bind:value="member"
+                  v-bind:key="member"
+                >{{member}}</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <input type="date" class="form-control" v-model="new_date">
+            </div>
+            <div class="col-2">
+              <button class="btn btn-primary" v-on:click="add">追加</button>
+            </div>
+          </div>
+        </div>
+
+        
+        
       </li>
     </ul>
   </div>
@@ -43,29 +62,27 @@ export default {
       new_todo: "",
       new_date: null,
       todos: [],
-      rep: '',
-      display_none:false
+      rep: "",
+      display_none: false
     };
   },
   methods: {
     add: function() {
-      if(this.valid) {
-        this.todos.push(
-          {
-            title: this.new_todo,
-            date: this.date,
-            rep: this.rep
-          }
-        )
-        this.new_todo = ''
-        this.new_date = null
-        this.rep = null
+      if (this.valid) {
+        this.todos.push({
+          title: this.new_todo,
+          date: this.date,
+          rep: this.rep
+        });
+        this.new_todo = "";
+        this.new_date = null;
+        this.rep = null;
       }
     }
   },
   computed: {
     valid: function() {
-      return this.new_todo != ''
+      return this.new_todo != "";
     }
   }
 };
