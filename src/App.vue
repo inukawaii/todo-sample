@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <h1>TODOリスト</h1>
-    <input type="checkbox" id="display_none" v-model="display_none">
-    <label for="display_none">完了したTODOは非表示にする</label>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="display_none" v-model="display_none">
+        <label for="display_none">完了したTODOは非表示にする</label>
+    </div>
+    
     <ul>
       <Todo
         v-for="(todo, index) in todos"
@@ -69,7 +72,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../node_modules/bulma/bulma.sass";
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
