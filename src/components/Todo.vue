@@ -1,10 +1,10 @@
 <template>
-  <li v-show="!done_is_invisible || !is_done">  
+  <li v-show="!display_none || !is_done">  
     <input type="checkbox" v-model="is_done">  
       <span>
-          <input type="text" v-model="title" v-bind:disabled="is_done">
+          <input type="text" v-model="todo.title" v-bind:disabled="is_done">
       </span>
-    <select v-bind:disabled="is_done" v-model="rep">
+    <select v-bind:disabled="is_done" v-model="todo.rep">
         <option v-for="member in members" v-bind:value="member" v-bind:key="member">{{member}}</option>
     </select>
     <input type="date" v-model="date" v-bind:disabled="is_done">
@@ -15,10 +15,9 @@
 export default {
   props: {
     members: Array,
-    title: String,
     date: Date,
-    rep: String,
-    done_is_invisible: Boolean
+    todo: Object,
+    display_none: Boolean
   },
   data: function() {
       return {

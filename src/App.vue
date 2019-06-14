@@ -1,16 +1,15 @@
 <template>
   <div id="app">
     <h1>TODOリスト</h1>
-    <input type="checkbox" id="invisible_check" v-model="done_is_invisible">
-    <label for="invisible_check">完了したTODOは非表示にする</label>
+    <input type="checkbox" id="display_none" v-model="display_none">
+    <label for="display_none">完了したTODOは非表示にする</label>
     <ul>
       <Todo
         v-for="(todo, index) in todos"
         v-bind:key="index"
-        v-bind:title="todo.title"
-        v-bind:rep="todo.rep"
+        v-bind:todo="todo"
         v-bind:members="members"
-        v-bind:done_is_invisible="done_is_invisible"
+        v-bind:display_none="display_none"
       />
       <li>
         <input type="textarea" v-model="new_todo" placeholder="TODOを入力してください">
@@ -42,7 +41,7 @@ export default {
       new_date: null,
       todos: [],
       rep: '',
-      done_is_invisible: false
+      display_none:false
     };
   },
   methods: {
